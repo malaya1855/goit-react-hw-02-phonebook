@@ -17,7 +17,7 @@ export const ContactList = ({ contacts, deleteContacts }) => {
             <ButtonDelete
               type="ButtonDelete"
               id={contact.id}
-              onClick={deleteContacts}
+              onClick={() => deleteContacts(contact.id)}
             >
               Delete
             </ButtonDelete>

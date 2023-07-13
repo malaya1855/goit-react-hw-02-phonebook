@@ -14,10 +14,10 @@ class App extends Component {
     const newName = name.value;
     const newContact = { id: nanoid(5), name: newName, number: number.value };
     ev.target.reset();
-
-    return this.state.contacts.find(
+    const existedContact = this.state.contacts.find(
       contact => contact.name.toLowerCase() === newName.toLowerCase()
-    )
+    );
+    return existedContact
       ? alert(`${newName} is already in your contacts`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
@@ -32,11 +32,11 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
-  onDeleteBtn = ev => {
-    const filtered = this.state.contacts.filter(
-      contact => contact.id !== ev.target.id
-    );
-    this.setState({ contacts: [...filtered] });
+  onDeleteBtn = id => {
+    const filtered = this.state.contacts.filter(contact => contact.id !== id);
+    return this.setState(prevState => ({
+      contacts: [...filtered],
+    }));
   };
 
   render() {
