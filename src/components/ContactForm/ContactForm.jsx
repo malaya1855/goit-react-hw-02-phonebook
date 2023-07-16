@@ -16,7 +16,8 @@ export default class ContactForm extends Component {
   };
 
   handleChange = ev => {
-    this.setState({ [ev.currentTarget.name]: ev.currentTarget.value });
+    const { name, value } = ev.currentTarget;
+    return this.setState({ [name]: value });
   };
 
   render() {
